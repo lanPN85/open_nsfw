@@ -67,7 +67,7 @@ def show_metrics(metrics):
 def main(args):
     print 'Loading model...'
     nsfw_net = caffe.Net(args.model_def,  # pylint: disable=invalid-name
-                         args.pretrained_model, caffe.TEST)
+                         1, weights=args.pretrained_model)
     caffe_transformer = nsfw.load_transformer(nsfw_net)
     print 'Done.'
 

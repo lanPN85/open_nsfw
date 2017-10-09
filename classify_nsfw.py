@@ -106,7 +106,7 @@ def main(argv):
 
     # Pre-load caffe model.
     nsfw_net = caffe.Net(args.model_def,  # pylint: disable=invalid-name
-                         args.pretrained_model, caffe.TEST)
+                         1, weights=args.pretrained_model)
 
     caffe_transformer = load_transformer(nsfw_net)
 
