@@ -44,7 +44,7 @@ def score_loop(file_list, transformer, net):
         f.close()
         scores = nsfw.caffe_preprocess_and_compute(img, caffe_transformer=transformer, caffe_net=net,
                                                    output_layers=['prob'])
-        print('[%s: %.3f] %d / %d ...' % (fname, scores[1], i + 1, length))
+        print('[%s: %.3f] %d / %d ...' % (fname.split('/')[-1], scores[1], i + 1, length))
         if scores[1] is None:
             print('WARNING: Error predicting %s' % fname)
         else:
@@ -97,6 +97,7 @@ def show_metrics(metrics):
 
 def main(args):
     assert (args.nsfw_cut > args.sfw_cut)
+    global NSFW_CUTOFF, SFW_CUTOFF
     NSFW_CUTOFF = args.nsfw_cut
     SFW_CUTOFF = args.sfw_cut
 
