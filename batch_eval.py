@@ -17,6 +17,10 @@ def parse_arguments():
     parser.add_argument('--pretrained-model', dest='pretrained_model', default='resnet_50_1by2_nsfw.caffemodel')
     parser.add_argument('--folder', dest='folder', default='data/sfw',
                         help='Path to the folder containing images')
+    parser.add_argument('--nsfw-cut', dest='nsfw_cut', default=NSFW_CUTOFF, type=float,
+                        help='Path to the folder containing images')
+    parser.add_argument('--sfw-cut', dest='sfw_cut', default=SFW_CUTOFF, type=float,
+                        help='Path to the folder containing images')
     return parser.parse_args()
 
 
@@ -92,6 +96,10 @@ def show_metrics(metrics):
 
 
 def main(args):
+    assert (args.nsfw_cut > args.sfw_cut)
+    NSFW_CUTOFF = args.nsfw_cut
+    SFW_CUTOFF = args.sfw_cut
+
     print('Loading model...')
     nsfw_net = caffe.Net(args.model_def, 1,
                          weights=args.pretrained_model)
