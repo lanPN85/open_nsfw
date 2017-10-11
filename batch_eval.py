@@ -42,8 +42,11 @@ def score_loop(file_list, transformer, net):
         f = open(fname)
         img = f.read()
         f.close()
-        scores = nsfw.caffe_preprocess_and_compute(img, caffe_transformer=transformer, caffe_net=net,
-                                                   output_layers=['prob'])
+        try:
+            scores = nsfw.caffe_preprocess_and_compute(img, caffe_transformer=transformer, caffe_net=net,
+                                                       output_layers=['prob'])
+        except IOError:
+            print('WARNING: Error predicting %s' % fname)
         print('[%s: %.3f] %d / %d ...' % (fname.split('/')[-1], scores[1], i + 1, length))
         if scores[1] is None:
             print('WARNING: Error predicting %s' % fname)
