@@ -10,13 +10,12 @@ import os
 import sys
 import argparse
 import glob
-import time
 from PIL import Image
 from StringIO import StringIO
 import caffe
 
 
-def resize_image(data, sz=(256, 256)):
+def resize_image(data, sz=(224, 224)):
     """
     Resize image. Please use this resize logic for best results instead of the 
     caffe, since it was used to generate training dataset 

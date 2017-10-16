@@ -18,9 +18,9 @@ def parse_arguments():
     parser.add_argument('--folder', dest='folder', default='data/sfw',
                         help='Path to the folder containing images')
     parser.add_argument('--nsfw-cut', dest='nsfw_cut', default=NSFW_CUTOFF, type=float,
-                        help='Path to the folder containing images')
+                        help='Score value above which an image would be considered NSFW')
     parser.add_argument('--sfw-cut', dest='sfw_cut', default=SFW_CUTOFF, type=float,
-                        help='Path to the folder containing images')
+                        help='Score value below which an image would be considered SFW')
     return parser.parse_args()
 
 
