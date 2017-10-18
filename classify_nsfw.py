@@ -59,7 +59,7 @@ def caffe_preprocess_and_compute(pimg, caffe_transformer=None, caffe_net=None,
         if output_layers is None:
             output_layers = caffe_net.outputs
 
-        img_data_rs = resize_image(pimg, sz=(256, 256))
+        img_data_rs = resize_image(pimg, sz=(224, 224))
         image = caffe.io.load_image(StringIO(img_data_rs))
 
         H, W, _ = image.shape
